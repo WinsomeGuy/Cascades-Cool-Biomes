@@ -9,7 +9,7 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 3. **This addon** — biome placement and new biomes
 
 ## Status
-> ⚠️ Early development — nothing playable yet
+> ⚠️ Early development — biome feature files added, overworld remap coming next
 
 ## Credits
 - Terrain: [Cascades](https://modrinth.com/datapack/cascades)
