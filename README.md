@@ -8,8 +8,17 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 2. [William Wythers Overhauled Overworld (WWOO)](https://modrinth.com/datapack/wwoo) — vanilla biome visuals
 3. **This addon** — biome placement and new biomes
 
+## Added biomes (beta-0.1)
+andesite crags, ancient taiga, autumnal forest, bayou, cactus desert,
+cool stony peaks, giant sequoia forest, glacial cliffs, highlands,
+jacaranda savanna, lapacho plains, larch taiga, maple mountains,
+phantasmal forest, sakura forest, snowy tundra, volcanic crater
+
+## Known issues
+- Wythers biomes generate above terrain (wrong y-level) — fix coming in next version
+
 ## Status
-> ⚠️ Early development — biome feature files added, overworld remap coming next
+> ⚠️ beta-0.1 — first playable version, known terrain height bug
 
 ## Credits
 - Terrain: [Cascades](https://modrinth.com/datapack/cascades)
