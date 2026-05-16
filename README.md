@@ -6,7 +6,7 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 ## Requirements (load order)
 1. [William Wythers Overhauled Overworld (WWOO)](https://modrinth.com/datapack/wwoo) — vanilla biome visuals ( Top )
 2. **This addon** — biome placement and new biomes
-3. [Cascades](https://modrinth.com/datapack/cascades) — terrain generation ( bottom )
+3. [Cascades](https://modrinth.com/mod/hybrid-beta) — terrain generation ( bottom )
 
 <img width="395" height="256" alt="image" src="https://github.com/user-attachments/assets/0c805dd2-5746-47ac-801d-328725c19ea2" />
 
