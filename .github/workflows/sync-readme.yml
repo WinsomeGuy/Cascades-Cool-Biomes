@@ -1,0 +1,23 @@
+name: Sync Modrinth Description
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync README to Modrinth
+        uses: funnyboy-roks/modrinth-auto-desc@v1
+        with:
+          auth-token: ${{ secrets.MODRINTH_TOKEN }}
+          slug: 56tYxv17
+          readme: README.md
