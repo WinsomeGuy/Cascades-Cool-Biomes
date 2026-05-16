@@ -8,7 +8,7 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 2. [William Wythers Overhauled Overworld (WWOO)](https://modrinth.com/datapack/wwoo) — vanilla biome visuals
 3. **This addon** — biome placement and new biomes
 
-## Added biomes (beta-0.4)
+## Added biomes
 ancient taiga, autumnal forest, bayou, cactus desert, cool stony peaks,
 giant sequoia forest, glacial cliffs, highlands, jacaranda savanna,
 lapacho plains, larch taiga, maple mountains, mediterranean island,
@@ -33,8 +33,11 @@ so they generate at correct ground level with Cascades terrain:
 | phantasmal forest | dark_forest (dark eerie) |
 | mediterranean island | beach (warm coastal) |
 
-## Status
-> ⚠️ beta-0.4 — stable placement, sunflower plains 92 entries
+## Changelog
+- **beta-0.4** *(May 15)* — Rebuilt overworld.json from scratch with correct climate logic, sunflower plains 92 entries
+- **beta-0.3** *(May 13)* — Swapped andesite_crags for mediterranean_island, boosted sunflower plains + maple mountains
+- **beta-0.2** *(May 11)* — Fixed biomes generating above terrain, restored all removed vanilla biomes
+- **beta-0.1** *(May 10)* — First release (known bug: biomes at wrong y-level)
 
 ## Why addon format?
 Ships only the overworld.json remap and WWEE biome/feature files.
