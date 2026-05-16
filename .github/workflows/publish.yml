@@ -1,0 +1,43 @@
+name: Publish to Modrinth
+
+on:
+  push:
+    tags:
+      - "v*" # Automatically trigger when you push a tag like "v1.0.0"
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: 'Version Name (e.g., 1.0.0)'
+        required: true
+        default: '1.0.0'
+      version_type:
+        description: 'Release Type'
+        required: true
+        default: 'release'
+        type: choice
+        options:
+          - release
+          - beta
+          - alpha
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Datapack Archive
+        run: zip -r cascades-cool-biomes.zip data pack.mcmeta README.md
+
+      - name: Publish to Modrinth
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: 56tYxv17
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: cascades-cool-biomes.zip
+          name: "Cascades Cool Biomes ${{ github.event.inputs.version_name || github.ref_name }}"
+          version: ${{ github.event.inputs.version_name || github.ref_name }}
+          version-type: ${{ github.event.inputs.version_type || 'release' }}
+          loaders: datapack
+          game-versions: "1.21.1" # Based on the pack.mcmeta description
