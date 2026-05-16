@@ -8,6 +8,9 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 2. **This addon** — biome placement and new biomes
 3. [Cascades](https://modrinth.com/datapack/cascades) — terrain generation ( bottom )
 
+<img width="395" height="256" alt="image" src="https://github.com/user-attachments/assets/0c805dd2-5746-47ac-801d-328725c19ea2" />
+
+
 ## Added biomes ( From WWEE )
 ancient taiga, autumnal forest, bayou, cactus desert, cool stony peaks,
 giant sequoia forest, glacial cliffs, highlands, jacaranda savanna,
