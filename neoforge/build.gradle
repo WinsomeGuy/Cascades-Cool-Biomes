@@ -3,6 +3,7 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+
 neoForge {
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists
@@ -41,4 +42,18 @@ neoForge {
     }
 }
 
+repositories {
+    maven { url "https://api.modrinth.com/maven" }
+}
+
+dependencies {
+    // Cascades - required
+    implementation "maven.modrinth:hybrid-beta:1.0.4.1+mod-neoforge"
+
+    // Optional mods - only for detection
+    compileOnly "maven.modrinth:wwoo:2.3.4-neoforge"
+    compileOnly "maven.modrinth:towns-and-towers:1.13.7-neoforge"
+}
+
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+

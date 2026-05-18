@@ -3,6 +3,9 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
     id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
 }
+repositories {
+    maven { url "https://api.modrinth.com/maven" }
+}
 base {
     archivesName = "${mod_name}-forge-${minecraft_version}"
 }
@@ -77,6 +80,12 @@ dependencies {
 
     // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+    // Cascades - required
+    implementation fg.deobf("maven.modrinth:hybrid-beta:1.0.4.1+mod-forge")
+
+    // Optional mods only for detection
+    compileOnly fg.deobf("maven.modrinth:wwoo:2.3.4-forge")
+    compileOnly fg.deobf("maven.modrinth:towns-and-towers:1.13.7-forge")
 }
 
 publishing {
