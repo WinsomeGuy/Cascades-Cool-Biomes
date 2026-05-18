@@ -63,5 +63,5 @@ This is only an addon for Cascades! No files from original pack included — ful
 
 ## Credits
 - [Crystalis7](https://modrinth.com/user/Crystalis7) Cascades
-- [WilliamWythers](https://modrinth.com/user/WilliamWythers) William Wythers Extended Ecosystem (WWEE)
+- [WilliamWythers](https://modrinth.com/user/WilliamWythers) William Wythers Expanded Ecosphere (WWEE)
 
