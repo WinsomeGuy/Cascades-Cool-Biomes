@@ -8,29 +8,28 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "homepage": "https://modrinth.com/mod/cascades-cool-biomes",
+        "sources": "https://github.com/WinsomeGuy/Cascades-Cool-Biomes",
+        "issues": "https://github.com/WinsomeGuy/Cascades-Cool-Biomes/issues"
     },
     "license": "${license}",
-    "icon": "${mod_id}.png",
+    "icon": "pack.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "com.example.examplemod.ExampleMod"
+            "dev.winsomeguy.cascadescoolbiomes.CascadesCoolBiomes"
         ]
     },
-    "mixins": [
-        "${mod_id}.mixins.json",
-        "${mod_id}.fabric.mixins.json"
-    ],
+    "mixins": [],
     "depends": {
         "fabricloader": ">=${fabric_loader_version}",
         "fabric-api": "*",
         "minecraft": "${minecraft_version}",
-        "java": ">=${java_version}"
+        "java": ">=${java_version}",
+        "mr_hybrid_beta": "*"
     },
     "suggests": {
-        "another-mod": "*"
+        "wwoo": "*",
+        "t_and_t": "*"
     }
 }
-  
