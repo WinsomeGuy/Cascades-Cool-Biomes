@@ -109,6 +109,7 @@ jobs:
             hybrid-beta | required
             wwoo | optional
             towns-and-towers | optional
+          java: ""
 
       - name: Publish Forge mod to Modrinth
         uses: Kir-Antipov/mc-publish@v3.3
