@@ -7,4 +7,7 @@ public class Constants {
     // Optional mod IDs to detect
     public static final String WWOO_MOD_ID = "wwoo";
     public static final String TNT_MOD_ID = "t_and_t";
+
+    public static final String CASCADES_MOD_ID = "mr_hybrid_beta";
+    public static final String CASCADES_DISPLAY_NAME = "Cascades (Hybrid Beta)";
 }
