@@ -1,9 +1,9 @@
-name: Publish to Modrinth
+name: Publish Release
 
 on:
   push:
     tags:
-      - "v*" # Automatically trigger when you push a tag like "v1.0.0"
+      - "v*"
   workflow_dispatch:
     inputs:
       version_name:
@@ -13,7 +13,7 @@ on:
       version_type:
         description: 'Release Type'
         required: true
-        default: 'release'
+        default: 'beta'
         type: choice
         options:
           - release
@@ -21,36 +21,110 @@ on:
           - alpha
 
 jobs:
-  publish:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Define variables
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Grant execute permission to gradlew
+        run: chmod +x gradlew
+
+      - name: Define version
         id: vars
         run: |
-          # Get the version name and remove any 'v' prefix if it exists
-          VERSION="${{ github.event.inputs.version_name || github.ref_name }}"
-          VERSION="${VERSION#v}"
-          
-          # Create the zip file name
-          ZIP_NAME="Cascades-Cool-Biomes-${VERSION}.zip"
-          
-          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+            VERSION="${{ github.event.inputs.version_name || github.ref_name }}"
+            VERSION="${VERSION#v}"
+            echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Create Datapack Archive
-        run: zip -r "${{ env.ZIP_NAME }}" data pack.mcmeta pack.png README.md
+      - name: Update version in gradle.properties
+        run: sed -i "s/^version=.*/version=${{ env.VERSION }}/" gradle.properties
 
-      - name: Publish to Modrinth
+      - name: Build all jars
+        run: ./gradlew build
+
+      - name: Create datapack zip
+        run: |
+          cd common/src/main/resources
+          zip -r "../../../../Cascades-Cool-Biomes-${{ env.VERSION }}-datapack.zip" data pack.mcmeta pack.png
+          cd ../../../..
+
+      - name: Publish datapack to Modrinth
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           modrinth-id: 56tYxv17
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-          files: ${{ env.ZIP_NAME }}
+          files: Cascades-Cool-Biomes-${{ env.VERSION }}-datapack.zip
           name: "Cascades Cool Biomes ${{ env.VERSION }}"
-          version: ${{ env.VERSION }}
+          version: ${{ env.VERSION }}-datapack
           version-type: ${{ github.event.inputs.version_type || 'release' }}
           loaders: datapack
-          game-versions: "1.21.1" # Based on the pack.mcmeta description
+          game-versions: "1.21.1"
+
+      - name: Publish Fabric mod to Modrinth
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: 56tYxv17
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: fabric/build/libs/!(*-dev|-sources|-javadoc).jar
+          name: "Cascades Cool Biomes ${{ env.VERSION }} (Fabric)"
+          version: ${{ env.VERSION }}-fabric
+          version-type: ${{ github.event.inputs.version_type || 'release' }}
+          loaders: fabric
+          game-versions: "1.21.1"
+          dependencies: |
+            mr_hybrid_beta | required
+            wwoo | optional
+            t_and_t | optional
+
+      - name: Publish NeoForge mod to Modrinth
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: 56tYxv17
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: neoforge/build/libs/!(*-dev|-sources|-javadoc).jar
+          name: "Cascades Cool Biomes ${{ env.VERSION }} (NeoForge)"
+          version: ${{ env.VERSION }}-neoforge
+          version-type: ${{ github.event.inputs.version_type || 'release' }}
+          loaders: neoforge
+          game-versions: "1.21.1"
+          dependencies: |
+            mr_hybrid_beta | required
+            wwoo | optional
+            t_and_t | optional
+
+      - name: Publish Forge mod to Modrinth
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          modrinth-id: 56tYxv17
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          files: forge/build/libs/!(*-dev|-sources|-javadoc).jar
+          name: "Cascades Cool Biomes ${{ env.VERSION }} (Forge)"
+          version: ${{ env.VERSION }}-forge
+          version-type: ${{ github.event.inputs.version_type || 'release' }}
+          loaders: forge
+          game-versions: "1.21.1"
+          dependencies: |
+            mr_hybrid_beta | required
+            wwoo | optional
+            t_and_t | optional
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: "Cascades Cool Biomes ${{ env.VERSION }}"
+          files: |
+            Cascades-Cool-Biomes-${{ env.VERSION }}-datapack.zip
+            fabric/build/libs/!(*-dev|-sources|-javadoc).jar
+            neoforge/build/libs/!(*-dev|-sources|-javadoc).jar
+            forge/build/libs/!(*-dev|-sources|-javadoc).jar
