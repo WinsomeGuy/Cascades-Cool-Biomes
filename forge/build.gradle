@@ -77,15 +77,11 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
-
-    // Forge's hack fix
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
-    // Cascades - required
-    implementation fg.deobf("maven.modrinth:hybrid-beta:1.0.4.1+mod-forge")
 
-    // Optional mods only for detection
-    compileOnly fg.deobf("maven.modrinth:wwoo:2.3.4-forge")
-    compileOnly fg.deobf("maven.modrinth:towns-and-towers:1.13.7-forge")
+    // Cascades - required (datapack mod, works with fg.deobf)
+    // implementation fg.deobf("maven.modrinth:hybrid-beta:1.0.4.1+mod-forge")
+    // WWOO and T&T have no Forge versions - detection done at runtime only
 }
 
 publishing {

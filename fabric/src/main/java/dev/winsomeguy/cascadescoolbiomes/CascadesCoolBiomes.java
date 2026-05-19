@@ -31,7 +31,7 @@ public class CascadesCoolBiomes implements ModInitializer {
             if (!hasTnT) {
                 player.sendSystemMessage(Component.literal(
                         "§e[Cascades Cool Biomes] §fTowns & Towers is not installed. " +
-                                "Some structures may be missing! Get it at: §bhttps://modrinth.com/mod/towns-and-towers"
+                                "Some Optional cool structures can be added! Get it at: §bhttps://modrinth.com/mod/towns-and-towers"
                 ));
             }
         });
