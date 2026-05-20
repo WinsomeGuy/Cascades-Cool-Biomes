@@ -19,6 +19,10 @@ on:
           - release
           - beta
           - alpha
+      changelog:
+        description: 'Changelog for this release'
+        required: false
+        type: string
 
 jobs:
   build-and-publish:
@@ -75,6 +79,7 @@ jobs:
           name: "Cascades Cool Biomes ${{ env.VERSION }}"
           version: ${{ env.VERSION }}-datapack
           version-type: ${{ github.event.inputs.version_type || 'release' }}
+          changelog: ${{ github.event.inputs.changelog }}
           loaders: datapack
           game-versions: "1.21.1"
 
@@ -87,6 +92,7 @@ jobs:
           name: "Cascades Cool Biomes ${{ env.VERSION }} (Fabric)"
           version: ${{ env.VERSION }}-fabric
           version-type: ${{ github.event.inputs.version_type || 'release' }}
+          changelog: ${{ github.event.inputs.changelog }}
           loaders: fabric
           game-versions: "1.21.1"
           dependencies: |
@@ -103,6 +109,7 @@ jobs:
           name: "Cascades Cool Biomes ${{ env.VERSION }} (NeoForge)"
           version: ${{ env.VERSION }}-neoforge
           version-type: ${{ github.event.inputs.version_type || 'release' }}
+          changelog: ${{ github.event.inputs.changelog }}
           loaders: neoforge
           game-versions: "1.21.1"
           dependencies: |
@@ -120,6 +127,7 @@ jobs:
           name: "Cascades Cool Biomes ${{ env.VERSION }} (Forge)"
           version: ${{ env.VERSION }}-forge
           version-type: ${{ github.event.inputs.version_type || 'release' }}
+          changelog: ${{ github.event.inputs.changelog }}
           loaders: forge
           game-versions: "1.21.1"
           dependencies: |
@@ -132,6 +140,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           name: "Cascades Cool Biomes ${{ env.VERSION }}"
+          body: ${{ github.event.inputs.changelog }}
           files: |
             Cascades-Cool-Biomes-${{ env.VERSION }}-datapack.zip
             ${{ env.FABRIC_JAR }}
