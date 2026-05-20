@@ -5,8 +5,13 @@
 A datapack addon for Cascades ( Currently only for Minecraft 1.21.1 ) that adds carefully selected biomes derived from WWEE
 on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 
-## Requirements (load order)
-1. [William Wythers Overhauled Overworld (WWOO)](https://modrinth.com/datapack/wwoo) — vanilla biome visuals ( Top ) 
+## Requirements Mod (Mod)
+1. [Cascades](https://modrinth.com/mod/hybrid-beta) — terrain generation 
+2. [William Wythers Overhauled Overworld (WWOO)](https://modrinth.com/datapack/wwoo) — vanilla biome OverHaul ( Use Datapack version)
+
+
+## Requirements (load order for _**Datapack**_)
+1. [William Wythers Overhauled Overworld (WWOO)](https://modrinth.com/datapack/wwoo) — biome overhaul ( Top ) 
 2. **This addon** — biome placement and new biomes 
 3. [Cascades](https://modrinth.com/mod/hybrid-beta) — terrain generation ( bottom ) 
 
@@ -15,6 +20,18 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 
 > [!NOTE]
 > This pack works without WWOO, but it's not recommended. The vanilla biome visuals don't blend well with the biomes this mod introduces. You can try another vanilla biome enhancement mod as a substitute, but WWOO is what this pack is designed and tested around.
+
+
+## Recommended mods/datapacks
+
+- Highly recomended using either [Distant Horizons](https://modrinth.com/mod/distanthorizons) or [Voxy](https://modrinth.com/mod/voxy) for best visuals
+- Somes Structure mods that fit nicely
+  * [Towns and Towers](https://modrinth.com/mod/towns-and-towers) ( Must use! )
+  * [Katters Structures](https://modrinth.com/mod/katters-structures)
+  * [ChoiceTheorem's Overhauled Village](https://modrinth.com/mod/ct-overhaul-village)
+
+> [!TIP]
+> For Voxy version 1.21.1 You may use this updated [fork](https://github.com/m3t4f1v3/voxy )
 
 
 ## Added biomes ( Derived from WWEE )
@@ -27,16 +44,7 @@ phantasmal forest, sakura forest, snowy tundra, volcanic crater
 birch forest, old growth birch forest, windswept hills, windswept forest,
 windswept gravelly hills, windswept savanna
 
-## Recommended mods/datapacks
 
-- Highly recomended using either [Distant Horizons](https://modrinth.com/mod/distanthorizons) or [Voxy](https://modrinth.com/mod/voxy) for best visuals 
-- Somes Structure mods that fit nicely 
-  * [Towns and Towers](https://modrinth.com/mod/towns-and-towers) ( Must use! )
-  * [Katters Structures](https://modrinth.com/mod/katters-structures) 
-  * [ChoiceTheorem's Overhauled Village](https://modrinth.com/mod/ct-overhaul-village)
-  
-> [!TIP]
-> For Voxy version 1.21.1 You may use this updated [fork](https://github.com/m3t4f1v3/voxy )
 
 
 ## Biome placement logic
@@ -64,4 +72,5 @@ This is only an addon for Cascades! No files from original pack included — ful
 ## Credits
 - [Crystalis7](https://modrinth.com/user/Crystalis7) Cascades
 - [WilliamWythers](https://modrinth.com/user/WilliamWythers) William Wythers Expanded Ecosphere (WWEE)
+- [WinsomeGuy](https://modrinth.com/user/WinsomeGuy) This mods author
 
