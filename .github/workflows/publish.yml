@@ -96,9 +96,9 @@ jobs:
           loaders: fabric
           game-versions: "1.21.1"
           dependencies: |
-            hybrid-beta | required
-            wwoo | optional
-            towns-and-towers | optional
+            hybrid-beta(required)
+            wwoo(optional)
+            towns-and-towers(optional)
 
       - name: Publish NeoForge mod to Modrinth
         uses: Kir-Antipov/mc-publish@v3.3
@@ -113,10 +113,9 @@ jobs:
           loaders: neoforge
           game-versions: "1.21.1"
           dependencies: |
-            hybrid-beta | required
-            wwoo | optional
-            towns-and-towers | optional
-          java: ""
+            hybrid-beta(required)
+            wwoo(optional)
+            towns-and-towers(optional)
 
       - name: Publish Forge mod to Modrinth
         uses: Kir-Antipov/mc-publish@v3.3
@@ -131,9 +130,9 @@ jobs:
           loaders: forge
           game-versions: "1.21.1"
           dependencies: |
-            hybrid-beta | required
-            wwoo | optional
-            towns-and-towers | optional
+            hybrid-beta(required)
+            wwoo(optional)
+            towns-and-towers(optional)
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
