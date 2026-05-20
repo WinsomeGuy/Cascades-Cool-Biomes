@@ -24,6 +24,12 @@ dependencies {
     modCompileOnly "maven.modrinth:towns-and-towers:1.13.7-fabric"
 }
 
+processResources { // Copy shi from common to RP folder
+    from(project(':common').sourceSets.main.resources) {
+        into("resourcepacks/cascades_cool_biomes")
+    }
+}
+
 loom {
     def aw = project(':common').file("src/main/resources/${mod_id}.accesswidener")
     if (aw.exists()) {
