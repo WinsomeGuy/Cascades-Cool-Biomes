@@ -23,6 +23,22 @@ on:
         description: 'Changelog for this release'
         required: false
         type: string
+      loaders_to_publish:
+        description: 'Which versions to publish'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - datapack only
+          - fabric only
+          - neoforge only
+          - forge only
+          - mods only (fabric + neoforge + forge)
+          - datapack + fabric + neoforge
+          - datapack + fabric
+          - datapack + neoforge
+          - datapack + forge
 
 jobs:
   build-and-publish:
@@ -56,21 +72,26 @@ jobs:
         run: ./gradlew build
 
       - name: Create datapack zip
+        if: ${{ github.event.inputs.loaders_to_publish == 'all' || github.event.inputs.loaders_to_publish == 'datapack only' || github.event.inputs.loaders_to_publish == 'datapack + fabric + neoforge' || github.event.inputs.loaders_to_publish == 'datapack + fabric' || github.event.inputs.loaders_to_publish == 'datapack + neoforge' || github.event.inputs.loaders_to_publish == 'datapack + forge' || github.event.inputs.loaders_to_publish == '' }}
         run: |
           cd common/src/main/resources
           zip -r "../../../../Cascades-Cool-Biomes-${{ env.VERSION }}-datapack.zip" data pack.mcmeta pack.png
           cd ../../../..
 
       - name: Find Fabric jar
+        if: ${{ github.event.inputs.loaders_to_publish == 'all' || github.event.inputs.loaders_to_publish == 'fabric only' || github.event.inputs.loaders_to_publish == 'mods only (fabric + neoforge + forge)' || github.event.inputs.loaders_to_publish == 'datapack + fabric + neoforge' || github.event.inputs.loaders_to_publish == 'datapack + fabric' || github.event.inputs.loaders_to_publish == '' }}
         run: echo "FABRIC_JAR=$(find fabric/build/libs -name '*.jar' ! -name '*-dev*' ! -name '*-sources*' ! -name '*-javadoc*' | head -1)" >> $GITHUB_ENV
 
       - name: Find NeoForge jar
+        if: ${{ github.event.inputs.loaders_to_publish == 'all' || github.event.inputs.loaders_to_publish == 'neoforge only' || github.event.inputs.loaders_to_publish == 'mods only (fabric + neoforge + forge)' || github.event.inputs.loaders_to_publish == 'datapack + fabric + neoforge' || github.event.inputs.loaders_to_publish == 'datapack + neoforge' || github.event.inputs.loaders_to_publish == '' }}
         run: echo "NEOFORGE_JAR=$(find neoforge/build/libs -name '*.jar' ! -name '*-dev*' ! -name '*-sources*' ! -name '*-javadoc*' | head -1)" >> $GITHUB_ENV
 
       - name: Find Forge jar
+        if: ${{ github.event.inputs.loaders_to_publish == 'all' || github.event.inputs.loaders_to_publish == 'forge only' || github.event.inputs.loaders_to_publish == 'mods only (fabric + neoforge + forge)' || github.event.inputs.loaders_to_publish == 'datapack + forge' || github.event.inputs.loaders_to_publish == '' }}
         run: echo "FORGE_JAR=$(find forge/build/libs -name '*.jar' ! -name '*-dev*' ! -name '*-sources*' ! -name '*-javadoc*' | head -1)" >> $GITHUB_ENV
 
       - name: Publish datapack to Modrinth
+        if: ${{ github.event.inputs.loaders_to_publish == 'all' || github.event.inputs.loaders_to_publish == 'datapack only' || github.event.inputs.loaders_to_publish == 'datapack + fabric + neoforge' || github.event.inputs.loaders_to_publish == 'datapack + fabric' || github.event.inputs.loaders_to_publish == 'datapack + neoforge' || github.event.inputs.loaders_to_publish == 'datapack + forge' || github.event.inputs.loaders_to_publish == '' }}
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           modrinth-id: 56tYxv17
@@ -84,6 +105,7 @@ jobs:
           game-versions: "1.21.1"
 
       - name: Publish Fabric mod to Modrinth
+        if: ${{ github.event.inputs.loaders_to_publish == 'all' || github.event.inputs.loaders_to_publish == 'fabric only' || github.event.inputs.loaders_to_publish == 'mods only (fabric + neoforge + forge)' || github.event.inputs.loaders_to_publish == 'datapack + fabric + neoforge' || github.event.inputs.loaders_to_publish == 'datapack + fabric' || github.event.inputs.loaders_to_publish == '' }}
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           modrinth-id: 56tYxv17
@@ -101,6 +123,7 @@ jobs:
             towns-and-towers(optional)
 
       - name: Publish NeoForge mod to Modrinth
+        if: ${{ github.event.inputs.loaders_to_publish == 'all' || github.event.inputs.loaders_to_publish == 'neoforge only' || github.event.inputs.loaders_to_publish == 'mods only (fabric + neoforge + forge)' || github.event.inputs.loaders_to_publish == 'datapack + fabric + neoforge' || github.event.inputs.loaders_to_publish == 'datapack + neoforge' || github.event.inputs.loaders_to_publish == '' }}
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           modrinth-id: 56tYxv17
@@ -118,6 +141,7 @@ jobs:
             towns-and-towers(optional)
 
       - name: Publish Forge mod to Modrinth
+        if: ${{ github.event.inputs.loaders_to_publish == 'all' || github.event.inputs.loaders_to_publish == 'forge only' || github.event.inputs.loaders_to_publish == 'mods only (fabric + neoforge + forge)' || github.event.inputs.loaders_to_publish == 'datapack + forge' || github.event.inputs.loaders_to_publish == '' }}
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           modrinth-id: 56tYxv17
