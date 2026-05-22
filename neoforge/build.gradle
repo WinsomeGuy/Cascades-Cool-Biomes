@@ -49,6 +49,7 @@ repositories {
 dependencies {
     // Cascades - required
     implementation "maven.modrinth:hybrid-beta:1.0.4.1+mod-neoforge"
+    implementation "maven.modrinth:cloth-config:15.0.140+neoforge"
 
     // Optional mods - only for detection
     compileOnly "maven.modrinth:wwoo:2.3.4-neoforge"

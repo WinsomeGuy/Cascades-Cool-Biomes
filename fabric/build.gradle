@@ -18,11 +18,13 @@ dependencies {
 
     // Cascades - required
     modImplementation "maven.modrinth:hybrid-beta:1.0.4.1+mod-fabric"
+    modImplementation "maven.modrinth:cloth-config:15.0.140+fabric"
 
     // Optional mods - only for detection
     modCompileOnly "maven.modrinth:wwoo:2.3.4-fabric"
     modCompileOnly "maven.modrinth:towns-and-towers:1.13.7-fabric"
 }
+
 
 processResources { // Copy shi from common to RP folder
     from(project(':common').sourceSets.main.resources) {
