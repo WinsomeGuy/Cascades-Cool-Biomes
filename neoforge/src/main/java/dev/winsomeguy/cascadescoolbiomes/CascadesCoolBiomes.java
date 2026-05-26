@@ -9,6 +9,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.minecraft.commands.Commands;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import me.shedaniel.autoconfig.AutoConfig;
 
 @Mod(Constants.MOD_ID)
 public class CascadesCoolBiomes {
@@ -18,6 +19,11 @@ public class CascadesCoolBiomes {
         // Cloth Confog
         ModConfig.register();
         CascadesCoolBiomesCommon.setNotificationsEnabled(ModConfig.get().enableJoinNotifications);
+        // Callback
+        CascadesCoolBiomesCommon.setOnNotificationsChangedCallback(() -> {
+            ModConfig.get().enableJoinNotifications = CascadesCoolBiomesCommon.isNotificationsEnabled();
+            AutoConfig.getConfigHolder(ModConfig.class).save();
+        });
 
         NeoForge.EVENT_BUS.addListener(this::onPlayerLogin);
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);

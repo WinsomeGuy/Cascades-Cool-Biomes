@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.commands.Commands;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import me.shedaniel.autoconfig.AutoConfig;
 
 public class CascadesCoolBiomes implements ModInitializer {
 
@@ -19,6 +20,11 @@ public class CascadesCoolBiomes implements ModInitializer {
         //Cloth Config
         ModConfig.register();
         CascadesCoolBiomesCommon.setNotificationsEnabled(ModConfig.get().enableJoinNotifications);
+        // callback
+        CascadesCoolBiomesCommon.setOnNotificationsChangedCallback(() -> {
+            ModConfig.get().enableJoinNotifications = CascadesCoolBiomesCommon.isNotificationsEnabled();
+            AutoConfig.getConfigHolder(ModConfig.class).save();
+        });
         // Making mod load on top : D
         FabricLoader.getInstance().getModContainer(Constants.MOD_ID).ifPresent(container -> {
             ResourceManagerHelper.registerBuiltinResourcePack(

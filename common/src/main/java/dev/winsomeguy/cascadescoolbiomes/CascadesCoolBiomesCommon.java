@@ -17,6 +17,9 @@ public class CascadesCoolBiomesCommon {
     }
     public static void setNotificationsEnabled(boolean enabled) {
         notificationsEnabled = enabled;
+        if (onNotificationsChanged != null) {
+            onNotificationsChanged.run();
+        }
     }
     public static Component buildNotificationMessage(String messageText, String url) {
         MutableComponent prefix = Component.literal("[Cascades Cool Biomes] ")
@@ -44,6 +47,7 @@ public class CascadesCoolBiomesCommon {
     public static boolean isNotificationsEnabled() {
         return notificationsEnabled;
     }
+    private static Runnable onNotificationsChanged = null;
 
     // Commmon Command Handel :D
     public static int handleNotificationsCommand(ServerPlayer player, String state) {
@@ -68,4 +72,11 @@ public class CascadesCoolBiomesCommon {
         }
         return 1;
     }
+
+    // Save preference to files
+
+    public static void setOnNotificationsChangedCallback(Runnable callback) {
+        onNotificationsChanged = callback;
+    }
+
 }
