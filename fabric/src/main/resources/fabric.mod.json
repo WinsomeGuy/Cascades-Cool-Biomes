@@ -18,6 +18,9 @@
     "entrypoints": {
         "main": [
             "dev.winsomeguy.cascadescoolbiomes.CascadesCoolBiomes"
+        ],
+        "modmenu": [
+            "dev.winsomeguy.cascadescoolbiomes.ModMenuIntegration"
         ]
     },
     "mixins": [],
