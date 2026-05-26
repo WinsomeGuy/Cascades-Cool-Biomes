@@ -1,6 +1,5 @@
 package dev.winsomeguy.cascadescoolbiomes;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
@@ -30,16 +29,15 @@ public class CascadesCoolBiomes {
         boolean hasTnT = ModList.get().isLoaded(Constants.TNT_MOD_ID);
 
         if (!hasWwoo) {
-            player.sendSystemMessage(Component.literal(
-                    "§e[Cascades Cool Biomes] §fWilliam Wythers' Overhauled Overworld (WWOO) is not installed. " +
-                            "Biome visuals may not look their best! Get it at: §bhttps://modrinth.com/mod/wwoo"
+            player.sendSystemMessage(CascadesCoolBiomesCommon.buildNotificationMessage(
+                    "William Wythers' Overhauled Overworld (WWOO) is not installed. Vanilla Biomes may look out of place!",
+                    "https://modrinth.com/mod/wwoo"
             ));
         }
-
         if (!hasTnT) {
-            player.sendSystemMessage(Component.literal(
-                    "§e[Cascades Cool Biomes] §fTowns & Towers is not installed. " +
-                            "Some Optional structures may be missing! Get it at: §bhttps://modrinth.com/mod/towns-and-towers"
+            player.sendSystemMessage(CascadesCoolBiomesCommon.buildNotificationMessage(
+                    "Towns & Towers is not installed. Some optional cool structures can be added!",
+                    "https://modrinth.com/mod/towns-and-towers"
             ));
         }
     }
