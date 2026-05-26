@@ -6,6 +6,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerPlayer;
 
 public class CascadesCoolBiomesCommon {
     public static final Logger LOG = LoggerFactory.getLogger(Constants.MOD_NAME);
@@ -42,5 +43,29 @@ public class CascadesCoolBiomesCommon {
     }
     public static boolean isNotificationsEnabled() {
         return notificationsEnabled;
+    }
+
+    // Commmon Command Handel :D
+    public static int handleNotificationsCommand(ServerPlayer player, String state) {
+        switch (state.toLowerCase()) {
+            case "off" -> {
+                setNotificationsEnabled(false);
+                player.sendSystemMessage(Component.literal(
+                        "§e[Cascades Cool Biomes] §fJoin notifications disabled. Use §7/ccb notifications on §fto re-enable."
+                ));
+            }
+            case "on" -> {
+                setNotificationsEnabled(true);
+                player.sendSystemMessage(Component.literal(
+                        "§e[Cascades Cool Biomes] §fJoin notifications re-enabled."
+                ));
+            }
+            default -> {
+                player.sendSystemMessage(Component.literal(
+                        "§e[Cascades Cool Biomes] §cUnknown state. Use §7on §cor §7off§c."
+                ));
+            }
+        }
+        return 1;
     }
 }

@@ -6,6 +6,9 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.minecraft.commands.Commands;
+import com.mojang.brigadier.arguments.StringArgumentType;
 
 @Mod(Constants.MOD_ID)
 public class CascadesCoolBiomes {
@@ -17,6 +20,7 @@ public class CascadesCoolBiomes {
         CascadesCoolBiomesCommon.setNotificationsEnabled(ModConfig.get().enableJoinNotifications);
 
         NeoForge.EVENT_BUS.addListener(this::onPlayerLogin);
+        NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
     }
 
     private void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
@@ -40,5 +44,26 @@ public class CascadesCoolBiomes {
                     "https://modrinth.com/mod/towns-and-towers"
             ));
         }
+    }
+
+    // Register Command
+    private void onRegisterCommands(RegisterCommandsEvent event) {
+        event.getDispatcher().register(
+                Commands.literal("ccb")
+                        .then(Commands.literal("notifications")
+                                .then(Commands.argument("state", StringArgumentType.word())
+                                        .suggests((ctx, builder) -> {
+                                            builder.suggest("on");
+                                            builder.suggest("off");
+                                            return builder.buildFuture();
+                                        })
+                                        .executes(ctx -> {
+                                            ServerPlayer player = ctx.getSource().getPlayerOrException();
+                                            String state = StringArgumentType.getString(ctx, "state");
+                                            return CascadesCoolBiomesCommon.handleNotificationsCommand(player, state);
+                                        })
+                                )
+                        )
+        );
     }
 }

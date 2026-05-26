@@ -7,6 +7,9 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.minecraft.resources.ResourceLocation;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.commands.Commands;
+import com.mojang.brigadier.arguments.StringArgumentType;
 
 public class CascadesCoolBiomes implements ModInitializer {
 
@@ -22,6 +25,26 @@ public class CascadesCoolBiomes implements ModInitializer {
                     ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, Constants.MOD_ID),
                     container,
                     ResourcePackActivationType.ALWAYS_ENABLED
+            );
+        });
+        // Command register
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(
+                    Commands.literal("ccb")
+                            .then(Commands.literal("notifications")
+                                    .then(Commands.argument("state", StringArgumentType.word())
+                                            .suggests((ctx, builder) -> {
+                                                builder.suggest("on");
+                                                builder.suggest("off");
+                                                return builder.buildFuture();
+                                            })
+                                            .executes(ctx -> {
+                                                ServerPlayer player = ctx.getSource().getPlayerOrException();
+                                                String state = StringArgumentType.getString(ctx, "state");
+                                                return CascadesCoolBiomesCommon.handleNotificationsCommand(player, state);
+                                            })
+                                    )
+                            )
             );
         });
 
