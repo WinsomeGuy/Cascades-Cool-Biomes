@@ -13,12 +13,18 @@ public class CascadesCoolBiomes {
 
     public CascadesCoolBiomes(IEventBus modEventBus) {
         CascadesCoolBiomesCommon.init();
+        // Cloth Confog
+        ModConfig.register();
+        CascadesCoolBiomesCommon.setNotificationsEnabled(ModConfig.get().enableJoinNotifications);
 
         NeoForge.EVENT_BUS.addListener(this::onPlayerLogin);
     }
 
     private void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        // Return without op
+        if (!CascadesCoolBiomesCommon.isNotificationsEnabled()) return;
+        if (!player.hasPermissions(2)) return;
 
         boolean hasWwoo = ModList.get().isLoaded(Constants.WWOO_MOD_ID);
         boolean hasTnT = ModList.get().isLoaded(Constants.TNT_MOD_ID);
