@@ -22,3 +22,9 @@ build
 eclipse
 run
 runs
+
+# vscode
+.vscode/
+
+# eclipse configs
+.eclipse/
