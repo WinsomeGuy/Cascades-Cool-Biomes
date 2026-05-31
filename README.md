@@ -7,7 +7,7 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 
 ## Requirements Mod (Mod)
 1. [Cascades](https://modrinth.com/mod/hybrid-beta) — terrain generation 
-2. [William Wythers Overhauled Overworld (WWOO)](https://modrinth.com/datapack/wwoo) — vanilla biome OverHaul ( Use Datapack version)
+2. [William Wythers Overhauled Overworld (WWOO)](https://modrinth.com/datapack/wwoo) — vanilla biome OverHaul (No longer need to Use Datapack version)
 
 
 ## Requirements (load order for _**Datapack**_)
@@ -21,6 +21,7 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 > [!NOTE]
 > This pack works without WWOO, but it's not recommended. The vanilla biome visuals don't blend well with the biomes this mod introduces. You can try another vanilla biome enhancement mod as a substitute, but WWOO is what this pack is designed and tested around.
 
+<br>
 
 ## Recommended mods/datapacks
 
@@ -33,6 +34,7 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 > [!TIP]
 > For Voxy version 1.21.1 You may use this updated [fork](https://github.com/m3t4f1v3/voxy )
 
+<br>
 
 ## Added biomes ( Derived from WWEE )
 ancient taiga, autumnal forest, bayou, cactus desert, cool stony peaks,
@@ -62,7 +64,7 @@ so they generate at correct ground level with Cascades terrain:
 | phantasmal forest | dark_forest (dark eerie) |
 | mediterranean island | beach (warm coastal) |
 
-Note: This don't include all biomes!
+Note: This doesn't include all biomes!
 
 
 ## Why addon format?
