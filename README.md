@@ -18,6 +18,8 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
 
 <img width="395" height="256" alt="image" src="https://github.com/user-attachments/assets/0c805dd2-5746-47ac-801d-328725c19ea2" />
 
+<br>
+
 > [!NOTE]
 > This pack works without WWOO, but it's not recommended. The vanilla biome visuals don't blend well with the biomes this mod introduces. You can try another vanilla biome enhancement mod as a substitute, but WWOO is what this pack is designed and tested around.
 
@@ -30,6 +32,8 @@ on top of Cascades worldgen, while restoring vanilla biomes removed by Cascades.
   * [Towns and Towers](https://modrinth.com/mod/towns-and-towers) ( Must use! )
   * [Katters Structures](https://modrinth.com/mod/katters-structures)
   * [ChoiceTheorem's Overhauled Village](https://modrinth.com/mod/ct-overhaul-village)
+
+<br>
 
 > [!TIP]
 > For Voxy version 1.21.1 You may use this updated [fork](https://github.com/m3t4f1v3/voxy )
