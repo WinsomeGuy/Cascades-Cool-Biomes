@@ -33,6 +33,7 @@ type = "required"
 versionRange = "*"
 ordering = "AFTER"
 side = "BOTH"
+referralUrl = "https://modrinth.com/datapack/hybrid-beta"
 
 [[dependencies.${mod_id}]]
 modId = "wwoo"
@@ -40,6 +41,7 @@ type = "optional"
 versionRange = "*"
 ordering = "NONE"
 side = "BOTH"
+referralUrl = "https://modrinth.com/mod/wwoo"
 
 [[dependencies.${mod_id}]]
 modId = "t_and_t"
@@ -47,3 +49,4 @@ type = "optional"
 versionRange = "*"
 ordering = "NONE"
 side = "BOTH"
+referralUrl = "https://modrinth.com/mod/towns-and-towers"
